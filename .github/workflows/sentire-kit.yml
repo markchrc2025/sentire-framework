@@ -1,0 +1,28 @@
+name: Sentire kit
+on:
+  pull_request:
+    paths: ["sentire-kit/**", "frappe/sentire.py"]
+  push:
+    branches: [sentire-16]
+    paths: ["sentire-kit/**", "frappe/sentire.py"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+        working-directory: sentire-kit
+      - run: npm run typecheck
+        working-directory: sentire-kit
+      - run: npm test
+        working-directory: sentire-kit
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python sentire-kit/test/cross_check.py

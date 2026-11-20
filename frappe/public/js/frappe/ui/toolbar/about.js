@@ -12,23 +12,19 @@ frappe.ui.misc.about = function () {
 		`<div class="about-body flex flex-col gap-5 items-start">
 			<div class="about-frappe-section flex flex-col items-center gap-3 py-3 w-full">
 				<div class="about-frappe-header flex flex-col justify-center items-center gap-1.5">
-					<img src="/assets/frappe/images/frappe-comp-logo.svg" alt="Frappe" class="about-frappe-wordmark">
+					<img src="/assets/frappe/images/frappe-comp-logo.svg" alt="Sentire Framework" class="about-frappe-wordmark">
 					<p class="about-tagline text-p-sm text-ink-gray-5 m-0">${__(
-						"Open Source applications for the web."
+						"Sentire Framework, based on Frappe Framework (MIT)."
 					)}</p>
 				</div>
 				<div class="about-social-btns flex gap-1">
-					<a href="https://frappe.io/" target="_blank" class="es-button" data-variant="ghost"
+					<a href="https://sentire.solutions/" target="_blank" class="es-button" data-variant="ghost"
 						data-icon-button="true" title="${__("Website")}" aria-label="${__("Website")}">
 						${frappe.utils.icon("globe", "sm", "", "", "", true)}
 					</a>
-					<a href="https://github.com/frappe" target="_blank" class="es-button" data-variant="ghost"
+					<a href="https://github.com/markchrc2025/sentire-framework" target="_blank" class="es-button" data-variant="ghost"
 						data-icon-button="true" title="${__("Source Code")}" aria-label="${__("Source Code")}">
 						${frappe.utils.icon("github", "sm", "", "", "", true)}
-					</a>
-					<a href="https://discuss.frappe.io" target="_blank" class="es-button" data-variant="ghost"
-						data-icon-button="true" title="${__("Forum")}" aria-label="${__("Forum")}">
-						${frappe.utils.icon("message-circle", "sm", "", "", "", true)}
 					</a>
 				</div>
 			</div>
@@ -37,7 +33,7 @@ frappe.ui.misc.about = function () {
 				<div class="about-info-row flex items-center justify-between">
 					<div class="about-info-content flex flex-col gap-1">
 						<div class="about-info-title inline-flex items-center gap-1 text-base-semibold text-ink-gray-8">${__(
-							"Frappe Framework Version"
+							"Sentire Framework Version"
 						)}</div>
 						<div class="about-info-sub text-p-sm text-ink-gray-5" id="about-framework-version">
 							${__("Loading...")}

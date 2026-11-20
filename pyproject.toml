@@ -121,10 +121,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://frappe.io/framework"
-Repository = "https://github.com/frappe/frappe.git"
+Homepage = "https://github.com/markchrc2025/sentire-framework"
+Repository = "https://github.com/markchrc2025/sentire-framework.git"
 Documentation = "https://docs.frappe.io/framework"
-"Bug Reports" = "https://github.com/frappe/frappe/issues"
+"Bug Reports" = "https://github.com/markchrc2025/sentire-framework/issues"
 
 [project.optional-dependencies]
 dev = [

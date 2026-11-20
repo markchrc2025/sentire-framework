@@ -181,6 +181,9 @@ def get_app_last_commit_ref(app):
 
 
 def check_for_update():
+	# Sentire Framework: no outbound update check unless the site config opts in
+	if not frappe.conf.get("sentire_enable_update_check"):
+		return
 	if frappe.get_system_settings("disable_system_update_notification") or not frappe.is_setup_complete():
 		return
 
@@ -362,6 +365,8 @@ def add_message_to_redis(update_json):
 
 @frappe.whitelist()
 def show_update_popup():
+	if not frappe.conf.get("sentire_enable_update_check"):
+		return
 	if frappe.get_system_settings("disable_system_update_notification"):
 		return
 	user = frappe.session.user

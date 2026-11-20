@@ -103,6 +103,7 @@ frappe.ui.Sidebar = class Sidebar {
 
 	setup_promotional_banners() {
 		if (
+			!frappe.boot.sentire_product_suggestions ||
 			frappe.defaults.is_enabled("disable_product_suggestion") ||
 			!frappe.user.has_role("System Manager")
 		)

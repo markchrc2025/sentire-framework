@@ -1,0 +1,11 @@
+/* Sentire design tokens, shared by the Vue (Frappe) and React (Next.js) apps. */
+:root {
+  --sentire-ink: #123a4f;
+  --sentire-ink-muted: #4a6572;
+  --sentire-mint: #9fd3c7;
+  --sentire-gold: #e8b23b;
+  --sentire-surface: #ffffff;
+  --sentire-surface-muted: #f4f7f8;
+  --sentire-radius: 10px;
+  --sentire-font: "Inter", Helvetica, Arial, sans-serif;
+}

@@ -1,0 +1,44 @@
+name: Upstream watch
+# Daily: opens an issue when Frappe or ERPNext has a newer v16 tag than the one this
+# framework is based on, or publishes a security advisory. This replaces the in-app
+# update popup, which Sentire Framework switches off.
+on:
+  schedule:
+    - cron: "17 1 * * *" # 09:17 Manila time
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare tags and advisories
+        run: |
+          set -euo pipefail
+          base=$(python3 -c "import json;print(json.load(open('.sentire/upstream.json'))['frappe_tag'])")
+          erp=$(python3 -c "import json;print(json.load(open('.sentire/upstream.json'))['erpnext_tag_in_use'])")
+          newest() { git ls-remote --tags --refs "https://github.com/$1" 'v16.*' | awk '{print $2}' | sed 's#refs/tags/##' | sort -V | tail -1; }
+          open_issue() {
+            title="$1"; body="$2"
+            if [ -z "$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number')" ]; then
+              gh issue create --title "$title" --body "$body"
+            fi
+          }
+          f=$(newest frappe/frappe); e=$(newest frappe/erpnext)
+          if [ "$f" != "$base" ]; then
+            notes=$(gh api "repos/frappe/frappe/releases/tags/$f" --jq '.body' 2>/dev/null | head -c 3000 || true)
+            open_issue "Upstream Frappe $f is out (we are based on $base)" "Follow docs-sentire/UPSTREAM-SYNC.md. Release notes:"$'\n\n'"$notes"
+          fi
+          if [ "$e" != "$erp" ]; then
+            open_issue "Upstream ERPNext $e is out (Ledger uses $erp)" "ERPNext raises the Frappe version it needs with each release. Sync this framework first, then bump Ledger."
+          fi
+          for repo in frappe/frappe frappe/erpnext; do
+            gh api "repos/$repo/security-advisories?per_page=10&state=published" --jq '.[] | [.ghsa_id, .severity, .summary, .html_url] | @tsv' 2>/dev/null | while IFS=$'\t' read -r id sev summary url; do
+              open_issue "Security advisory $id ($repo, $sev)" "$summary"$'\n\n'"$url"$'\n\n'"Check whether the fix is in the tag we are based on; if not, sync now."
+            done
+          done

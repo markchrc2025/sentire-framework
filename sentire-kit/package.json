@@ -1,0 +1,21 @@
+{
+  "name": "@sentire/kit",
+  "version": "16.60.2-sentire.1",
+  "description": "Sentire Framework TypeScript kit: connects Next.js apps (Prisma or Drizzle on Postgres) to the Sentire ecosystem and to Frappe-based Sentire apps.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./tokens.css": "./tokens.css"
+  },
+  "files": ["dist", "tokens.css"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsc -p tsconfig.json && node --test test/events.test.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": { "typescript": "^5.6.0", "@types/node": "^22.0.0" }
+}

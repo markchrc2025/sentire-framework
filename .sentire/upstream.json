@@ -2,5 +2,7 @@
   "frappe_tag": "v16.60.2",
   "frappe_commit": "2df0425571ebbaed878eabc3edc5b7e7c3327ae0",
   "erpnext_tag_in_use": "v16.60.0",
-  "sentire_release": "v16.60.2-sentire.1"
+  "sentire_release": "v16.60.2-sentire.1",
+  "sentire_commit": "eb4c1e4ffad53673042369fbc675f6d3bbf4f1da",
+  "release_branch": "release/v16.60.2-sentire.1"
 }

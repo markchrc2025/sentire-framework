@@ -12,8 +12,9 @@ ECOSYSTEM.md. The engine is based on Frappe Framework (MIT); see LEGAL.md.
 
 ## Using the Python engine
     bench init --frappe-path https://github.com/markchrc2025/sentire-framework \
-               --frappe-branch v16.60.2-sentire.1 my-bench
-Always pin a tag, never the branch. Tags are never moved: a fix gets the next -sentire.N.
+               --frappe-branch release/v16.60.2-sentire.1 my-bench
+Pin a release, never sentire-16. Each release has a branch release/<release> that is never
+moved, and products also check its exact commit. A fix gets the next -sentire.N.
 
 ## Using the TypeScript kit
     npm install "github:markchrc2025/sentire-framework#v16.60.2-sentire.1" (then build sentire-kit)

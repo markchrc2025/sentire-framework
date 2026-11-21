@@ -5,7 +5,7 @@ history so upstream releases merge in cleanly. This file lists every change from
 Keep the list short: each line here is a line that can conflict in an upstream merge.
 
 - Based on: Frappe Framework v16.60.2 (commit 2df0425571ebbaed878eabc3edc5b7e7c3327ae0)
-- This release: v16.60.2-sentire.1
+- This release: v16.60.2-sentire.1 (release branch release/v16.60.2-sentire.1; the git tag of the same name is added by the owner on GitHub)
 - Branch: sentire-16
 
 ## Never changed (compatibility)
@@ -48,6 +48,8 @@ Keep the list short: each line here is a line that can conflict in an upstream m
 | .github/workflows/upstream-watch.yml | daily issue when Frappe or ERPNext publishes a newer v16 tag or a security advisory |
 
 ## Removed
+- README.md replaced with a Sentire README (credits Frappe and its trademark).
+- .github: Frappe's Dependabot, stale-bot, labeler and release configs, helper scripts and the Frappe Cloud button.
 - All of Frappe's own GitHub workflows (.github/workflows/*). They run Frappe's release,
   translation and test jobs and need Frappe's credentials. Products test the framework in
   their own CI (for example ph-cas runs its full suite on it).
